@@ -44,11 +44,13 @@ def stats(update, context):
 
 
 def start(update, context):
-    
-    
+    buttons = button_build.ButtonMaker()
+    buttons.buildbutton("Сой Телеграм", "https://t.me/remen_goyard")
+    buttons.buildbutton("Мой ВК", "https://vk.com/devlet_b")
+    reply_markup = InlineKeyboardMarkup(buttons.build_menu(2))   
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
         start_string = f'''
-This bot can mirror all your links to Google Drive!
+Это бот, который умеет напрямую скачивать файлы (Игры, программы, фильмы, музыку, фото) на Ваш Google Диск
 Type /{BotCommands.HelpCommand} to get a list of available commands
 '''
         sendMarkup(start_string, context.bot, update, reply_markup)
