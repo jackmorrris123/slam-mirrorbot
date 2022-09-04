@@ -45,13 +45,13 @@ def stats(update, context):
 
 def start(update, context):
     buttons = button_build.ButtonMaker()
-    buttons.buildbutton("Сой Телеграм", "https://t.me/remen_goyard")
+    buttons.buildbutton("Мой Телеграм", "https://t.me/remen_goyard")
     buttons.buildbutton("Мой ВК", "https://vk.com/devlet_b")
     reply_markup = InlineKeyboardMarkup(buttons.build_menu(2))   
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
         start_string = f'''
 Это бот, который умеет напрямую скачивать файлы (Игры, программы, фильмы, музыку, фото) на Ваш Google Диск
-Type /{BotCommands.HelpCommand} to get a list of available commands
+Напишите /{BotCommands.HelpCommand} чтобы получить список команд этого бота
 '''
         sendMarkup(start_string, context.bot, update, reply_markup)
     else:
@@ -89,7 +89,7 @@ def log(update, context):
 help_string_telegraph = f'''<br>
 <b>/{BotCommands.HelpCommand}</b>: To get this message
 <br><br>
-<b>/{BotCommands.MirrorCommand}</b> [download_url][magnet_link]: Start mirroring the link to Google Drive.
+<b>/{BotCommands.MirrorCommand}</b> [download_url][magnet_link]: Начнёт загрузку с магнет ссылки на Google Диск
 <br><br>
 <b>/{BotCommands.TarMirrorCommand}</b> [download_url][magnet_link]: Start mirroring and upload the archived (.tar) version of the download
 <br><br>
