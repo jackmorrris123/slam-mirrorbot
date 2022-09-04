@@ -31,12 +31,12 @@ def stats(update, context):
     cpuUsage = psutil.cpu_percent(interval=0.5)
     memory = psutil.virtual_memory().percent
     disk = psutil.disk_usage('/').percent
-    stats = f'<b>Bot Uptime:</b> <code>{currentTime}</code>\n' \
-            f'<b>Total Disk Space:</b> <code>{total}</code>\n' \
-            f'<b>Used:</b> <code>{used}</code> ' \
-            f'<b>Free:</b> <code>{free}</code>\n\n' \
-            f'<b>Upload:</b> <code>{sent}</code>\n' \
-            f'<b>Download:</b> <code>{recv}</code>\n\n' \
+    stats = f'<b>Время работы бота:</b> <code>{currentTime}</code>\n' \
+            f'<b>Общее дисковое пространство:</b> <code>{total}</code>\n' \
+            f'<b>Использовано:</b> <code>{used}</code> ' \
+            f'<b>Свободно памяти:</b> <code>{free}</code>\n\n' \
+            f'<b>Выгрузка на Google Диск:</b> <code>{sent}</code>\n' \
+            f'<b>Загрузка:</b> <code>{recv}</code>\n\n' \
             f'<b>CPU:</b> <code>{cpuUsage}%</code> ' \
             f'<b>RAM:</b> <code>{memory}%</code> ' \
             f'<b>DISK:</b> <code>{disk}%</code>'
@@ -51,7 +51,9 @@ def start(update, context):
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
         start_string = f'''
 Это бот, который умеет напрямую скачивать файлы (Игры, программы, фильмы, музыку, фото) на Ваш Google Диск
+------------------------------------
 Напишите /{BotCommands.HelpCommand} чтобы получить список команд этого бота
+Напишите /start чтобы перезапустить бота
 '''
         sendMarkup(start_string, context.bot, update, reply_markup)
     else:
@@ -154,9 +156,9 @@ help_string_telegraph = f'''<br>
 <b>/{BotCommands.StatsCommand}</b>: Show Stats of the machine the bot is hosted on
 '''
 help = Telegraph(access_token=telegraph_token).create_page(
-        title='Slam Mirrorbot Help',
-        author_name='Slam Mirrorbot',
-        author_url='https://github.com/SlamDevs/slam-mirrorbot',
+        title='Torrent2GDrive Help',
+        author_name='BLADE',
+        author_url='https://github.com/jackmorrris123/slam-mirrorbot',
         html_content=help_string_telegraph,
     )["path"]
 
@@ -188,7 +190,7 @@ help_string = f'''
 
 def bot_help(update, context):
     button = button_build.ButtonMaker()
-    button.buildbutton("Other Commands", f"https://telegra.ph/{help}")
+    button.buildbutton("Больше команд", f"https://telegra.ph/{help}")
     reply_markup = InlineKeyboardMarkup(button.build_menu(1))
     sendMarkup(help_string, context.bot, update, reply_markup)
 
